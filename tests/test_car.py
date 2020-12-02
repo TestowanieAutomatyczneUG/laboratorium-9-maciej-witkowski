@@ -27,6 +27,12 @@ class TestCar(unittest.TestCase):
         result = self.car.getEngineTemperature()
         self.assertEqual(result, 85)
 
+    @patch.object(Car, 'driveTo')
+    def test_driveTo(self, mock):
+        mock.return_value = "Søliljevej 28, 2650 Hvidovre, Denmark"
+        result = self.car.driveTo("Søliljevej 28, 2650 Hvidovre, Denmark")
+        self.assertEqual(result, "Søliljevej 28, 2650 Hvidovre, Denmark")
+
     def setUp(self):
         self.car = Car()
 
